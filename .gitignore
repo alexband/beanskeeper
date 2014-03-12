@@ -1,4 +1,7 @@
 *.sw[op]
 *.pyc
 /venv
+*/build/
+*/dist/
+*/*.egg-info/
 
