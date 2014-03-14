@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-
+from MySQLdb import IntegrityError
 from flask import Flask, request, abort
 from fnv1a import get_hash
 
@@ -34,10 +34,15 @@ def files_put(bucket, path):
     else:
         data = request.data
         if data:
-            BeansFile.add(filename=path,
+            try:
+                BeansFile.add(filename=path,
                           mimetype="application/octet-stream",
                           filehash=str(key),
                           uploadTime=datetime.now())
+            except IntegrityError:
+                oldfile = BeansFile.get_by_filehash(str(key))
+                oldfile.uploadTime=datetime.now()
+                oldfile.save()
             db.set(str(key), data)
     return "bucket:%s, path:%s" % (bucket, path)
 
