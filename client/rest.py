@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""This file is from Dropbox Python SDK"""
+"""This file is derived from Dropbox Python SDK"""
 
 import io
 import pkg_resources
@@ -21,17 +21,6 @@ except ImportError:
 
 
 class RESTResponse(io.IOBase):
-
-    """
-    Responses to requests can come in the form of ``RESTResponse``. These are
-    thin wrappers around the socket file descriptor.
-    :meth:`read()` and :meth:`close()` are implemented.
-    It is important to call :meth:`close()` to return the connection
-    back to the connection pool to be reused. If a connection
-    is not closed by the caller it may leak memory. The object makes a
-    best-effort attempt upon destruction to call :meth:`close()`,
-    but it's still best to explicitly call :meth:`close()`.
-    """
 
     def __init__(self, resp):
         # arg: A urllib3.HTTPResponse object

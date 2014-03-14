@@ -31,6 +31,14 @@ def files_put(bucket, path):
                       uploadTime=datetime.now())
         # to get tempfile path
         db.set(str(key), upload_file.read())
+    else:
+        data = request.data
+        if data:
+            BeansFile.add(filename=path,
+                          mimetype="application/octet-stream",
+                          filehash=str(key),
+                          uploadTime=datetime.now())
+            db.set(str(key), data)
     return "bucket:%s, path:%s" % (bucket, path)
 
 
