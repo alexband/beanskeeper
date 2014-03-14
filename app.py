@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
+import StringIO
 from datetime import datetime
 from MySQLdb import IntegrityError
-from flask import Flask, request, abort
+from flask import (Flask, request, abort,
+                   send_file)
 from fnv1a import get_hash
 
-from libs import beansdb as db, sqlstore as store
+from libs import beansdb as db
 from model import BeansFile
 
 
@@ -57,6 +59,21 @@ def files_get(bucket, path):
         if content:
             return "%s" % content
     return abort(404)
+
+@app.route('/download/<bucket>/<path>', methods=["GET"])
+def download(bucket, path):
+    filename = bucket + path
+    key = get_hash(filename)
+    beansfile = BeansFile.get_by_filehash(str(key))
+
+    if not beansfile:
+        return abort(404)
+
+    return send_file(StringIO.StringIO(beansfile.content()),
+                     mimetype="application/octet-stream",
+                     cache_timeout=2592000,
+                     as_attachment=True,
+                     attachment_filename=beansfile.filename.encode("UTF-8"))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
