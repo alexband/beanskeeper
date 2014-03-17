@@ -4,7 +4,7 @@ import os.path, re, sys
 import time
 from random import shuffle
 
-from config import DOUBANDB_SERVERS
+from config.conf import DOUBANDB_SERVERS
 
 try:
     from cmemcached import Client

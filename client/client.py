@@ -11,6 +11,7 @@ import urllib
 from StringIO import StringIO
 from .session import BaseSession
 from .rest import RESTClient
+from config.conf import HOST
 
 try:
     import json
@@ -34,7 +35,7 @@ class BeanskeeperClient(object):
         if params is None:
             params = {}
 
-        host = self.session.HOST
+        host = HOST
         url = self.session.build_url(host, target, params)
         return url
 

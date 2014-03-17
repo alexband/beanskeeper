@@ -5,10 +5,7 @@ import sys
 import urllib
 from . import rest
 
-
 class BaseSession(object):
-
-    HOST = "127.0.0.1:5000"
 
     def __init__(self, root='mybucket', rest_client=rest.RESTClient):
         self.root = root

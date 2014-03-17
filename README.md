@@ -1,5 +1,15 @@
 #### Quick Start
 
+prepare
+
+install beansdb from https://github.com/alexband/beansdb
+
+install beanseye from https://github.com/douban/beanseye
+
+install patched libmemcached
+
+http://douban-code.github.io/pages/python-libmemcached.html
+
 ```
 1. virtualenv venv
 2. . venv/bin/activate
