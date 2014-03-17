@@ -14,8 +14,12 @@ http://douban-code.github.io/pages/python-libmemcached.html
 1. virtualenv venv
 2. . venv/bin/activate
 3. pip install cython
-4. pip install -r requirements.txt
-5. cd fnv1a ```python setup.py install```
+
+# due to http://stackoverflow.com/questions/21198881/error-when-trying-to-install-django-cms-in-virtualenv-w-mysql-on-mac-osx
+4. pip install -e 'git+http://github.com/qingfeng/MySQLdb1.git@b203124b73b0018fe2da399aa363ce031392c3d4#egg=MySQL-python'
+
+5. pip install -r requirements.txt
+6. cd fnv1a ```python setup.py install```
 ```
 
 BELOW ALL PORTS USED SHOULD SET IN `config.py`
@@ -65,3 +69,22 @@ change settings according
 start app
 
 ```gunicorn -w 2 -b 0.0.0.0:5000 app:app```
+
+
+===========================
+
+see `example.py` for put files.
+also you can ```curl "http://localhost:6000/files_put/mybucket/somefile.ext" -F file="@somefile.ext"```
+
+beanseye should run on port 7908
+http server runs on 6000
+
+shoud see file content http://0.0.0.0:6000/files_get/mybucket/README.md
+can download at http://0.0.0.0:6000/download/mybucket/README.md
+
+============================
+TODO
+
+now only implement http PUT/GET
+
+and using fnv1a hash as beansdb store's key also store in mysql (this will be a concern)
