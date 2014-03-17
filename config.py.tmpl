@@ -36,3 +36,12 @@ MYSQL_STORE = {
             }
         }
 }
+
+try:
+    from local_config import *
+except ImportError, e:
+    if e.args[0].startswith('No module named local_config'):
+        pass
+    else:
+        # the ImportError is raised inside local_config
+        raise

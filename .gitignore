@@ -1,5 +1,6 @@
 *.sw[op]
 *.pyc
+config.py
 /venv
 */build/
 */dist/
