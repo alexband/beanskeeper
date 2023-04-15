@@ -1,5 +1,5 @@
 Flask==0.10
-urllib3==1.8
+urllib3==1.26.5
 setuptools==2.2
 gunicorn==18.0
 -e git+https://github.com/douban/douban-utils.git@5ca697545da191dab3fbe308e6b6776d8da83bd5#egg=DoubanUtils
