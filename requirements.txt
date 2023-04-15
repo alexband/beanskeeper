@@ -1,7 +1,7 @@
 Flask==0.10
 urllib3==1.8
 setuptools==2.2
-gunicorn==18.0
+gunicorn==19.5.0
 -e git+https://github.com/douban/douban-utils.git@5ca697545da191dab3fbe308e6b6776d8da83bd5#egg=DoubanUtils
 -e git+https://github.com/alexband/douban-sqlstore.git@20139a5b2c89e45a3444af9f546dc7e6a89885cf#egg=DoubanSQLStore
 -e git+https://github.com/douban/douban-orz.git@208b48177dc847ef2afdadfda302868c39797bdf#egg=ORZ
